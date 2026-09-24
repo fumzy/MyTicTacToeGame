@@ -47,7 +47,9 @@ header {
 
 header img {
   width: 8rem;
+
   object-fit: contain;
+
   margin: 3rem auto 1rem;
 
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
@@ -66,13 +68,34 @@ h1 {
 }
 
 /* ========================================
+   GAME LAYOUT
+======================================== */
+
+#game-layout {
+  width: 92%;
+  max-width: 70rem;
+
+  margin: 3rem auto;
+
+  display: grid;
+
+  grid-template-columns: minmax(0, 45rem) 18rem;
+
+  justify-content: center;
+  align-items: start;
+
+  gap: 2rem;
+}
+
+/* ========================================
    GAME CONTAINER
 ======================================== */
 
 #game-container {
+  width: 100%;
   max-width: 45rem;
 
-  margin: 3rem auto;
+  margin: 0;
   padding: 2rem;
 
   position: relative;
@@ -204,7 +227,6 @@ h1 {
   margin: 0;
   padding: 0.5rem;
 
-  /* Same muted colour used by the game log */
   color: #b9a8b2;
 
   font-size: 1rem;
@@ -458,29 +480,75 @@ ol {
 }
 
 /* ========================================
+   GAME LOG CONTAINER
+======================================== */
+
+#log-container {
+  width: 100%;
+
+  padding: 1.5rem;
+
+  border: 1px solid #493443;
+  border-radius: 16px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(34, 23, 33, 0.96),
+    rgba(25, 17, 24, 0.96)
+  );
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+
+  position: sticky;
+  top: 2rem;
+}
+
+#log-container h2 {
+  margin: 0 0 1.5rem;
+
+  color: #d6b77a;
+
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+
+  text-align: center;
+}
+
+/* ========================================
    GAME LOG
 ======================================== */
 
 #log {
-  max-width: 20rem;
+  width: 100%;
+  max-width: none;
+  max-height: 32rem;
 
-  margin: 2rem auto;
-  padding: 0;
+  margin: 0;
+  padding: 0 0.25rem;
 
   color: #b9a8b2;
 
   list-style: none;
 
-  text-align: center;
+  text-align: left;
+
+  overflow-y: auto;
 }
 
 #log li {
-  margin: 0.75rem;
-  padding: 0.3rem;
+  margin: 0 0 0.75rem;
 
+  padding: 0.65rem 0.75rem;
+
+  border-bottom: 1px solid #493443;
   border-radius: 6px;
 
   animation: slide-in-from-left 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
+
+#log li:last-child {
+  margin-bottom: 0;
 }
 
 #log li.highlighted {
@@ -489,6 +557,28 @@ ol {
   background: #291d28;
 
   border: 1px solid #493443;
+}
+
+/* Custom scrollbar */
+
+#log::-webkit-scrollbar {
+  width: 6px;
+}
+
+#log::-webkit-scrollbar-track {
+  background: #211720;
+
+  border-radius: 10px;
+}
+
+#log::-webkit-scrollbar-thumb {
+  background: #62475b;
+
+  border-radius: 10px;
+}
+
+#log::-webkit-scrollbar-thumb:hover {
+  background: #89627c;
 }
 
 /* ========================================
@@ -628,7 +718,36 @@ ol {
 }
 
 /* ========================================
-   RESPONSIVE
+   TABLET / SMALL LAPTOP
+======================================== */
+
+@media (max-width: 950px) {
+  #game-layout {
+    width: 90%;
+    max-width: 45rem;
+
+    grid-template-columns: 1fr;
+  }
+
+  #game-container {
+    width: 100%;
+  }
+
+  #log-container {
+    width: 100%;
+
+    position: static;
+  }
+
+  #log {
+    max-height: none;
+
+    text-align: center;
+  }
+}
+
+/* ========================================
+   MOBILE
 ======================================== */
 
 @media (max-width: 700px) {
@@ -638,9 +757,15 @@ ol {
     margin-bottom: 2rem;
   }
 
-  #game-container {
-    margin: 2rem 1rem;
+  #game-layout {
+    width: calc(100% - 2rem);
 
+    margin: 2rem auto;
+
+    gap: 1.5rem;
+  }
+
+  #game-container {
     padding: 1.25rem;
   }
 
@@ -674,7 +799,15 @@ ol {
   #game-over p {
     font-size: 1.4rem;
   }
+
+  #log-container {
+    padding: 1.25rem;
+  }
 }
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
 
 @media (max-width: 450px) {
   #players {
