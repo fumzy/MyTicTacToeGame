@@ -171,9 +171,8 @@ Vite will display the local development URL in the terminal.
 
 ## 📸 Application Preview
 
-![Tic-Tac-Toe Game](./src/assets/tic-tac-toe-preview.png)
+https://my-tic-tac-toe-game-steel.vercel.app/
 
-> Replace the image path above with the final screenshot filename once the screenshot is added to the repository.
 
 ## 💡 What I Learned
 
